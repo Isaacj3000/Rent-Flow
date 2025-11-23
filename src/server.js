@@ -15,11 +15,33 @@ app.use(express.urlencoded({ extended: true }));
 
 // Basic route
 app.get('/', (req, res) => {
-  res.json({ 
-    message: 'RentFlow API is running!',
-    status: 'success'
+  res.send( `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>RentFlow Backend Monitor</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+          color: #333;
+          text-align: center;
+          padding: 20px;
+        }
+        h1 {
+          color: #007bff;
+        }
+      </style>
+    </head>
+    <body>
+    <h1>Hello World! This is the RentFlow Backend Monitor.</h1>
+    <p>The backend is running and ready to serve requests.</p>
+    </body>
+    </html>
+    `);
   });
-});
 
 // Health check route
 app.get('/health', (req, res) => {
@@ -29,7 +51,7 @@ app.get('/health', (req, res) => {
   });
 });
 // mount property routes 
-// app.use('/api/properties', require('./routes/property.routes'));
+app.use('/api/properties', require('./routes/property.routes'));
 
 // Start server
 connectDB(process.env.MONGO_URI)

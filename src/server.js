@@ -52,6 +52,7 @@ app.get('/health', (req, res) => {
 });
 // mount property routes 
 app.use('/api/properties', require('./routes/property.routes'));
+app.use('/api/users', require('./routes/user.routes'));
 
 // Start server
 connectDB(process.env.MONGO_URI)
